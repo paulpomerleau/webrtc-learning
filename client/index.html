@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple WebRTC Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <input type="text" id="roomInput" placeholder="Enter room ID" value="test-room">
+            <button id="joinBtn">Join Room</button>
+            <span id="statusIndicator" class="status-indicator" style="display: none;"></span>
+        </div>
+        <div class="header-right">
+            <span id="connectionStatus" class="connection-status">Not connected</span>
+            <input type="file" id="uploadBtn" accept=".json" title="Verify Transcript" style="display: none;">
+            <button id="verifyBtn" title="Verify Transcript">⚖️</button>
+            <button id="muteBtn" disabled>Mute</button>
+            <button id="videoBtn" disabled>Video Off</button>
+            <button id="downloadBtn" title="Download Transcript">📥</button>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <div class="video-area">
+            <div class="no-video-message" id="noVideoMessage">
+                💬 Chat-only mode<br>
+                <small>Camera/microphone not available</small>
+            </div>
+            <video id="remoteVideo" autoplay></video>
+            <video id="localVideo" autoplay muted></video>
+        </div>
+        
+        <div class="chat-area">
+            <div class="chat-header">
+                💬 Chat
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type a message..." disabled>
+                <button id="sendBtn" disabled>Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Socket.IO -->
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <!-- Simple-peer library -->
+    <script src="https://unpkg.com/simple-peer@9.11.1/simplepeer.min.js"></script>
+    
+    <!-- Modular application -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html> 
